@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "customer-counter-2a402": {
+      "hosting": {
+        "ng-counter": [
+          "customer-counter-2a402"
+        ]
+      }
+    }
+  }
+}
