@@ -3,11 +3,7 @@
     {
       "target": "ng-counter",
       "public": "dist/ng-counter",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
           "source": "**",
