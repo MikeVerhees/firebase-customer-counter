@@ -4,6 +4,15 @@
 
 export const environment = {
   production: false,
+  firebase: {
+    apiKey: 'AIzaSyC6potbMil_ifq-PsCc0XAiP4Ak5zIFBNc',
+    authDomain: 'customer-counter-2a402.firebaseapp.com',
+    databaseURL: 'https://customer-counter-2a402.firebaseio.com',
+    projectId: 'customer-counter-2a402',
+    storageBucket: 'customer-counter-2a402.appspot.com',
+    messagingSenderId: '521821374153',
+    appId: '1:521821374153:web:0b0169099d98d2c9f1ef18'
+  }
 };
 
 /*
