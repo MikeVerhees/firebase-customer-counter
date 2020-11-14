@@ -47,8 +47,8 @@ export class LoginComponent implements OnInit {
     const actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be whitelisted in the Firebase Console.
-      url: 'http://localhost:4200/login',
-      // url: 'https://scouts-dash.web.app/login',
+      // url: 'http://localhost:4200/login',
+      url: 'https://customer-counter-2a402.web.app/login',
       // This must be true.
       handleCodeInApp: true,
       // iOS: {
