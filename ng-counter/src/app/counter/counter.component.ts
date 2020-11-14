@@ -48,14 +48,21 @@ export class CounterComponent implements OnInit {
     this.fs.firestore.runTransaction(transaction => {
       return transaction.get(this.counterRef.ref).then((counterDoc) => {
         if (!counterDoc.exists) {
-          throw "Document does not exist!";
+          throw new Error('doc does not exist.');
         }
 
-        var newCount = (counterDoc.data().count || 0) + modifier;
-        transaction.update(this.counterRef.ref, { count: newCount });
+        const newCount = (counterDoc.data().count || 0) + modifier;
+        if (newCount >= 0) {
+          transaction.update(this.counterRef.ref, { count: newCount });
+        }
       });
-    })
+    });
 
+  }
+  async createCounter() {
+    const newCounterDoc = this.fs.collection('counters').ref.doc();
+    newCounterDoc.set({ count: 0 });
+    this.$user.set({ counterId: newCounterDoc.id });
   }
 
 

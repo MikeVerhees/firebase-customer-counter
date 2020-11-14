@@ -1,4 +1,15 @@
-<p>counter works!</p>
-{{this.counter.count}}
-<div (click)="changeCount(-1)">-</div>
-<div (click)="changeCount(1)">+</div>
+<div class="container">
+    <div *ngIf="this.counter">
+        <div>
+            <h1>Aantal klanten</h1>
+            <h2>{{this.counter?.count}}</h2>
+        </div>
+
+        <button class='countBtn' (click)="changeCount(-1)">-</button>
+        <button class='countBtn' (click)="changeCount(1)">+</button>
+    </div>
+    <div *ngIf="!this.counter">
+        <button (click)="createCounter()">Teller Aanmaken</button>
+    </div>
+
+</div>
