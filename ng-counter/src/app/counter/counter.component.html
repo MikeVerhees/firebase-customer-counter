@@ -1,4 +1,4 @@
 <p>counter works!</p>
-{{currentCount}}
-<div>-</div>
-<div>+</div>
+{{this.counter.count}}
+<div (click)="changeCount(-1)">-</div>
+<div (click)="changeCount(1)">+</div>
