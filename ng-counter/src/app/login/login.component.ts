@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { auth } from 'firebase/app';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('mailInput', { static: true }) input: ElementRef;
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth, public router: Router) { }
 
   ngOnInit() {
     // Confirm the link is a sign-in with email link.
@@ -18,24 +19,25 @@ export class LoginComponent implements OnInit {
       // the sign-in operation.
       // Get the email if available. This should be available if the user completes
       // the flow on the same device where they started it.
-      var email = window.localStorage.getItem('signInEmail');
+      let email = window.localStorage.getItem('signInEmail');
       if (!email) {
         // User opened the link on a different device. To prevent session fixation
         // attacks, ask the user to provide the associated email again. For example:
-        email = window.prompt('Please provide your email for confirmation');
+        email = window.prompt('Geef a.u.b. het email-adres ter bevestiging');
       }
       // The client SDK will parse the code from the link for you.
       this.afAuth.auth.signInWithEmailLink(email, window.location.href)
-        .then(function (result) {
+        .then((result) => {
           // Clear email from storage.
           window.localStorage.removeItem('signInEmail');
+          this.router.navigate(['counter']);
           // You can access the new user via result.user
           // Additional user info profile not available via:
           // result.additionalUserInfo.profile == null
           // You can check if the user is new or existing:
           // result.additionalUserInfo.isNewUser
         })
-        .catch(function (error) {
+        .catch((error) => {
           // Some error occurred, you can inspect the code: error.code
           // Common errors could be invalid email and invalid or expired OTPs.
         });
@@ -62,8 +64,8 @@ export class LoginComponent implements OnInit {
       // dynamicLinkDomain: 'example.page.link'
     };
     try {
-      console.log(`logging in with ${email}`)
-      let res = await this.afAuth.auth.sendSignInLinkToEmail(email, actionCodeSettings);
+      console.log(`logging in with ${email}`);
+      const res = await this.afAuth.auth.sendSignInLinkToEmail(email, actionCodeSettings);
       console.log('res', res);
     } catch (err) {
       console.log('err', err);
